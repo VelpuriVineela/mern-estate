@@ -31,3 +31,31 @@ export const deleteListing = async (req, res, next) => {
     next(error);
   }
 };
+
+export const updateListing = async (req, res, next) => {
+  const listing = await Listing.findById(req.params.id);
+
+  // check for the avaliability of listing
+  if (!listing) {
+    return next(errorHandler(404, "Listing not found!"));
+  }
+
+  // checks if the listing is belongs to the current user
+  if (req.user.id !== listing.userRef) {
+    return next(errorHandler(401, "You can only update your own listings!"));
+  }
+
+  // updatating the listing
+  try {
+    // it will find id(got as a request by user) and update in db
+    const updatedListing = await Listing.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      // it will give the update listing not the prev one
+      { new: true }
+    );
+    res.status(200).json(updatedListing);
+  } catch (error) {
+    next(error);
+  }
+};
