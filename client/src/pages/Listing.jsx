@@ -15,6 +15,7 @@ import {
   FaParking,
   FaShare,
 } from "react-icons/fa";
+import Contact from "../components/Contact";
 
 export default function Listing() {
   SwiperCore.use([Navigation]);
@@ -50,7 +51,6 @@ export default function Listing() {
     fetchListing();
   }, [params.listingId]);
 
-  console.log(loading);
   return (
     <main>
       {/* for loading effect before page load */}
@@ -144,6 +144,17 @@ export default function Listing() {
                 {listing.furnished ? "Furnished" : "Unfurnished"}
               </li>
             </ul>
+            {/* the contact lanload is not visibile to listing creaters */}
+            {currentUser && listing.userRef !== currentUser._id && !contact && (
+              <button
+                onClick={() => setContact(true)}
+                className="bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3"
+              >
+                Contact landlord
+              </button>
+            )}
+            {/* this is for the column of email to message */}
+            {contact && <Contact listing={listing} />}
           </div>
         </div>
       )}
