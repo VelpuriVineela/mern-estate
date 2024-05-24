@@ -219,7 +219,7 @@ export default User;
 
 ### Listing Model (`listing.model.js`)
 
-```bash
+```javascript
 import mongoose from "mongoose";
 
 const listingSchema = new mongoose.Schema(
