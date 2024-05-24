@@ -20,7 +20,8 @@ export default function Search() {
   // to get the listing
   const [listings, setListings] = useState([]);
 
-  console.log(listings);
+  //usestate for showmore button
+  const [showMore, setShowMore] = useState(false);
 
   // to modify the side bar details according to the search input and the search url in header
   useEffect(() => {
@@ -58,15 +59,15 @@ export default function Search() {
     // now we need to fetch the data according to the sidebar filter
     const fetchListings = async () => {
       setLoading(true);
-      // setShowMore(false);
+      setShowMore(false);
       const searchQuery = urlParams.toString();
       const res = await fetch(`/api/listing/get?${searchQuery}`);
       const data = await res.json();
-      // if (data.length > 8) {
-      //   setShowMore(true);
-      // } else {
-      //   setShowMore(false);
-      // }
+      if (data.length > 8) {
+        setShowMore(true);
+      } else {
+        setShowMore(false);
+      }
       setListings(data);
       setLoading(false);
     };
@@ -130,6 +131,24 @@ export default function Search() {
     // navigate the user to that searchQuery URL
 
     navigate(`/search?${searchQuery}`);
+  };
+
+  //function to handle more listing than 9 by showing after clicking show more button
+  const onShowMoreClick = async () => {
+    //get the length of listing
+    const numberOfListings = listings.length;
+    const startIndex = numberOfListings;
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set("startIndex", startIndex);
+
+    const searchQuery = urlParams.toString();
+    const res = await fetch(`/api/listing/get?${searchQuery}`);
+    const data = await res.json();
+    if (data.length < 9) {
+      setShowMore(false);
+    }
+    // we add listings data to the previous listings data array
+    setListings([...listings, ...data]);
   };
 
   return (
@@ -253,6 +272,15 @@ export default function Search() {
             listings.map((listing) => (
               <ListingItem key={listing._id} listing={listing} />
             ))}
+
+          {showMore && (
+            <button
+              onClick={onShowMoreClick}
+              className="text-green-700 hover:underline p-7 text-center w-full"
+            >
+              Show more
+            </button>
+          )}
         </div>
       </div>
     </div>
