@@ -1,6 +1,9 @@
 
 # MERN Real Estate Website
 
+![Screenshot 2024-06-19 154916](https://github.com/VelpuriVineela/mern-estate/assets/134683293/6d169f6e-cc24-49b7-a6e7-994c0f98c767)
+
+
 Explore and manage real estate properties with this comprehensive MERN Real Estate Website! Browse, search, and filter properties, view detailed information, and manage your listings with ease. This application provides a user-friendly interface and real-time updates for both property seekers and agents.
 
 
