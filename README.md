@@ -9,6 +9,7 @@ Explore and manage real estate properties with this comprehensive MERN Real Esta
 
 ## Table of Contents
 - [Introduction](#introduction)
+- [Hosted Link](#hosted-link)
 - [Demo](#demo)
 - [Project Structure](#project-structure)
 - [Features](#features)
@@ -16,12 +17,15 @@ Explore and manage real estate properties with this comprehensive MERN Real Esta
 - [Usage](#usage)
 - [Models](#models)
 - [Contributing](#contributing)
-- [Hosted Link](#hosted-link)
 
 
 ## Introduction
 
 The MERN Real Estate Website is a full-stack web application designed to facilitate the buying, selling, and renting of real estate properties. It provides a seamless experience for both property seekers and agents with features like property listings, detailed property views, and user management.
+
+## Hosted Link
+
+https://mern-estate-06vg.onrender.com/
 
 ## Demo
 
@@ -300,6 +304,4 @@ Contributions are welcome! If you would like to contribute to the MERN Real Esta
 4. Create a pull request with a clear description of your changes.
 
 
-## Hosted Link
 
-https://mern-estate-06vg.onrender.com/
